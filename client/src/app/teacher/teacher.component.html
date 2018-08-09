@@ -1,0 +1,116 @@
+<div class="cointainer-fluid">
+  <div class="p-3 bg-dark text-white"><h4>Teachers <button type="button" class="btn btn-success btn-small float-right"  (click)="ClearFields()" data-toggle="modal"  data-target="#AddTeacher" >Add</button></h4></div>
+
+<table class="table table-darkbg">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Mobile</th>
+      <th>Email</th>
+      <th>Designation</th>
+      <th>Edit</th> 
+      <th>Delete</th>      
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let teacher of teachers | async">
+      <td >{{teacher.Name}}</td>
+      <td >{{teacher.Mobile}}</td>
+      <td >{{teacher.Email}}</td>
+      <td >{{teacher.Designation}}</td>
+      <td><button type="button" class="btn btn-dark btn-sm" data-toggle="modal"  data-target="#editTeacher"  (click)="PopulateModal(teacher)">Edit</button></td>
+      <td><button type="button" class="btn btn-dark btn-sm" (click)="remove(teacher)">Delete</button></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+<!-- Modal Add Teacher -->
+<div class="modal fade" id="AddTeacher" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Add Teacher</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Name</label>
+          <div class="col-sm-10">
+            <input [(ngModel)]="teacherName"  type="text" class="form-control"  placeholder="Enter Name">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Mobile</label>
+          <div class="col-sm-10">
+            <input [(ngModel)]="teacherMobile" type="text" class="form-control" placeholder="Enter Mobile Number">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Email</label>
+          <div class="col-sm-10">
+            <input  [(ngModel)]="teacherEmail" type="email" class="form-control" placeholder="Enter Email Address">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Course</label>
+          <div class="col-sm-10">
+            <input  [(ngModel)]="teacherDesignation" type="text" class="form-control" placeholder="Enter Designation">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click) = "createNewTeacherRecord()" data-dismiss="modal" >Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Edit Teacher -->
+<div class="modal fade" id="editTeacher" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Update Teacher</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+              <input [(ngModel)]="teacherName"  type="text" class="form-control"  placeholder="Enter Name">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Mobile</label>
+            <div class="col-sm-10">
+              <input [(ngModel)]="teacherMobile" type="text" class="form-control" placeholder="Enter Mobile Number">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+              <input  [(ngModel)]="teacherEmail" type="email" class="form-control" placeholder="Enter Email Address">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Course</label>
+            <div class="col-sm-10">
+              <input  [(ngModel)]="teacherDesignation" type="text" class="form-control" placeholder="Enter Designation">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" (click) = "updateTeacherRecord(teacher)">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
